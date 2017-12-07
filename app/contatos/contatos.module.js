@@ -6,10 +6,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 const core_1 = require("@angular/core");
+const contatos_lista_component_1 = require("./contatos-lista.component");
 let ContatosModule = class ContatosModule {
 };
 ContatosModule = __decorate([
-    core_1.NgModule({})
+    core_1.NgModule({
+        declarations: [
+            contatos_lista_component_1.ContatosListaComponent
+        ],
+        exports: [
+            contatos_lista_component_1.ContatosListaComponent
+        ]
+    })
 ], ContatosModule);
 exports.ContatosModule = ContatosModule;
 //# sourceMappingURL=contatos.module.js.map
