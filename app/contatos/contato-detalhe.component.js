@@ -6,16 +6,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 const core_1 = require("@angular/core");
-let AppComponent = class AppComponent {
+let ContatoDetalheComponent = class ContatoDetalheComponent {
 };
-AppComponent = __decorate([
+ContatoDetalheComponent = __decorate([
     core_1.Component({
-        selector: 'my-app',
-        template: `
-    <h1>My first angular 2 app</h1>
-    <router-outlet></router-outlet>
-    `
+        moduleId: module.id,
+        selector: 'contato-detalhe',
+        templateUrl: 'contato-detalhe.component.html'
     })
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+], ContatoDetalheComponent);
+exports.ContatoDetalheComponent = ContatoDetalheComponent;
+//# sourceMappingURL=contato-detalhe.component.js.map
