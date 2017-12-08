@@ -6,11 +6,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 const core_1 = require("@angular/core");
+const common_1 = require("@angular/common");
 const contatos_lista_component_1 = require("./contatos-lista.component");
 let ContatosModule = class ContatosModule {
 };
 ContatosModule = __decorate([
     core_1.NgModule({
+        imports: [
+            common_1.CommonModule
+        ],
         declarations: [
             contatos_lista_component_1.ContatosListaComponent
         ],
