@@ -17,6 +17,10 @@ const contatoRoutes = [
     {
         path: 'contato/save',
         component: contato_detalhe_component_1.ContatoDetalheComponent
+    },
+    {
+        path: 'contato/save/:id',
+        component: contato_detalhe_component_1.ContatoDetalheComponent
     }
 ];
 let ContatoRoutingModule = class ContatoRoutingModule {

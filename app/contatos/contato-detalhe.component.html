@@ -1,23 +1,28 @@
 <div class="container">
     <h2>Salvar contato</h2>
 
-    <form>
+    <form #contatoForm="ngForm">
         <div class="form-group">
             <label for="nome">Nome</label>
-            <input type="text" class="form-control" placeholder="Insira o nome">
+            <input type="text" [ngClass]="getFormControlClass(nome.valid, nome.pristine)" placeholder="Insira o nome" name="nome" [(ngModel)]="contato.nome" required #nome="ngModel">
+            <div class="invalid-feedback">O campo nome é obrigatório</div>
         </div>
 
         <div class="form-group">
             <label for="nome">Email</label>
-            <input type="email" class="form-control" placeholder="Insira o email">
+            <input type="email" [ngClass]="getFormControlClass(email.valid, email.pristine)" placeholder="Insira o email" name="email" [(ngModel)]="contato.email" required #email="ngModel">
+            <div class="invalid-feedback">O campo e-mail é obrigatório</div>
         </div>
 
             <div class="form-group">
                 <label for="nome">Telefone</label>
-                <input type="text" class="form-control" placeholder="Insira o telefone">
+                <input type="text" [ngClass]="getFormControlClass(telefone.valid, telefone.pristine)" placeholder="Insira o telefone" name="telefone" [(ngModel)]="contato.telefone" required #telefone="ngModel">
+                <div class="invalid-feedback">O campo telefone é obrigatório</div>
             </div>
 
-            <button class="btn btn-success">Salvar</button>
+            <button class="btn btn-success" [disabled]="!contatoForm.form.valid">Salvar</button>
             <a  routerLink="/" class="btn btn-secondary">Voltar</a>
     </form>
+
+    <button (click)="teste()" class="btn btn-warning">Log</button>
 </div>
