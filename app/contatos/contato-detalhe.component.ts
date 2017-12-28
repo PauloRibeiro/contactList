@@ -13,6 +13,7 @@ import { Contato } from './contato.model';
 })
 export class ContatoDetalheComponent {
     contato: Contato;
+    private isNew: boolean = true;
 
     constructor(
         private contatoService: ContatoService,
@@ -21,14 +22,16 @@ export class ContatoDetalheComponent {
     ) {}
 
     ngOnInit(): void {
-        this.contato = new Contato(0, '', '', '');
+        this.contato = new Contato('', '', '');
 
         this.route.params.forEach((params: Params) => {
             let id:number = +params['id'];
 
-            //console.log(id);
+            console.log(id);
 
             if(id) {
+                this.isNew = false;
+
                 this.contatoService.getContato(id)
                 .then((contato: Contato) => {
                     this.contato = contato;
@@ -45,7 +48,19 @@ export class ContatoDetalheComponent {
         };
     }
 
-    teste():void {
-        console.log('teste');
+    onSubmit():void {
+
+        let promise;
+
+        if(this.isNew) {
+            console.log('cadastrar contato');
+            promise = this.contatoService.create(this.contato);
+
+        } else {
+            console.log('alterar contato');
+            promise = this.contatoService.update(this.contato);
+        }
+
+        promise.then(contato => this.location.back());
     }
 }
