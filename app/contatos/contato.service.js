@@ -59,6 +59,11 @@ let ContatoService = class ContatoService {
             setTimeout(resolve, 3000);
         }).then(() => this.getContatos());
     }
+    search(term) {
+        return this.http
+            .get(`${this.apiUrl}/?nome=${term}`)
+            .map((res) => res.json().data);
+    }
 };
 ContatoService = __decorate([
     core_1.Injectable(),

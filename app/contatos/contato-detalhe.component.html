@@ -21,6 +21,6 @@
             </div>
 
             <button class="btn btn-success" [disabled]="!contatoForm.form.valid">Salvar</button>
-            <a  routerLink="/" class="btn btn-secondary">Voltar</a>
+            <a (click)="goBack()" class="btn btn-secondary">Voltar</a>
     </form>
 </div>

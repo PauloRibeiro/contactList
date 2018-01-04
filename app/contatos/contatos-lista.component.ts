@@ -4,14 +4,17 @@ import { Contato } from "./contato.model";
 import { ContatoService } from "./contato.service";
 import { DialogService } from "./../dialog.service";
 
-
 @Component({
     moduleId: module.id,
     selector: 'contatos-lista',
     templateUrl: 'contatos-lista.component.html'
 })
 export class ContatosListaComponent implements OnInit {
-    contatos: Contato[];
+    contatos: Contato[] = [];
+
+    mensagem: {};
+    classesCss: {};
+    private currentTimeout: any;
 
     constructor(
         private contatoService: ContatoService,
@@ -24,6 +27,10 @@ export class ContatosListaComponent implements OnInit {
                 this.contatos = contatos;
             }).catch(err => {
                 console.log('Aconteceu um erro: ', err);
+                this.mostrarMensagem({
+                    tipo: 'danger',
+                    texto: 'Ocorreu um erro ao buscar a lista de contatos.'
+                });
             });
     }
 
@@ -35,12 +42,46 @@ export class ContatosListaComponent implements OnInit {
                     .delete(contato)
                     .then((c: Contato) => {
                         this.contatos = this.contatos.filter((c:Contato) => c.id != contato.id);
+
+                        this.mostrarMensagem({
+                            tipo: 'success',
+                            texto: 'Contato deletado com sucesso.'
+                        });
                     }).catch(err => {
-                        console.log(err);
+                        //console.log(err);
+                        this.mostrarMensagem({
+                            tipo: 'error',
+                            texto: 'Ocorreu um erro ao deletar o contato.'
+                        });
                     })
                 } else {
 
                 }
-            })
+            });
+    }
+
+    private mostrarMensagem(mensagem: {tipo: string, texto: string}): void {
+        this.mensagem = mensagem;
+        this.montarClasses(mensagem.tipo);
+        if(mensagem.tipo != 'danger') {
+            
+            if(this.currentTimeout) {
+                clearTimeout(this.currentTimeout);
+            } else 
+            {
+                console.log('not started');
+            }
+    
+            this.currentTimeout = setTimeout(() => {
+                this.mensagem = undefined;
+            }, 3000);
+        }
+    }
+
+    private montarClasses(tipo: string): void {
+        this.classesCss = {
+            'alert': true
+        };
+        this.classesCss['alert-' + tipo] = true;
     }
 }
