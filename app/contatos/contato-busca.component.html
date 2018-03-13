@@ -5,9 +5,9 @@
 
             <div class="form-group">
                 <label for="search"></label>
-                <input type="search" class="form-control" placeholder="Digite sua busca" [ngModel]="busca" (ngModelChange)="search($event)">
+                <input type="search" class="form-control" placeholder="Digite sua busca" [ngModel]="busca teste aqui" (ngModelChange)="search($event)">
             </div>
-
+            <span>testando alteração</span>
             <ul class="list-group">
                 <li class="list-group-item cursor-pointer" *ngFor="let c of contatos | async" (click)="verDetalhe(c)">{{ c.nome }}</li>
             </ul>
